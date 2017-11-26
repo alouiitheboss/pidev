@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<link rel="stylesheet"
+			href="#{request.contextPath}/resources/css/userprofile.css" />
+
+		<script src="#{request.contextPath}/resources/js/jquery-3.1.1.js"></script>
+		<script>
+      function followUnfollow()
+      {
+        var status = document.getElementById("flwUnflwBTN").value;
+        if(status == "Follow")
+        {
+          document.getElementById("flwUnflwBTN").value="Unfollow";
+          document.getElementById("flwUnflwBTN").style.background="#778289";
+          document.getElementById("flwUnflwBTN").style.border="1px solid #778289";
+        }
+        else
+        {
+          document.getElementById("flwUnflwBTN").value="Follow";
+          document.getElementById("flwUnflwBTN").style.background="#3498db";
+          document.getElementById("flwUnflwBTN").style.border= "1px solid #2487c9";
+        }
+
+
+      }
+
+      function Posts()
+      {
+        $(document).ready(function(){
+          $("#posts").fadeIn("slow");
+          $("#followers").hide();
+          $("#following").hide();
+        })
+      }
+      function Followers()
+      {
+        $(document).ready(function(){
+          $("#followers").fadeIn("slow");
+          $("#posts").hide();
+          $("#following").hide();
+        })
+      }
+      function Following()
+      {
+        $(document).ready(function(){
+          $("#following").fadeIn("slow");
+          $("#posts").hide();
+          $("#followers").hide();
+        })
+      }
+
+      function doEdit() {
+    	    $("#editSpan").show();
+		
+	}
+      function doHideEdit() {
+    	    $("#editSpan").hide();
+  		
+  	}
+    </script>
+	</h:head>
+	<h:body>
+		<div class="content-profile-page">
+			<div class="profile-user-page card">
+				<div class="img-user-profile">
+					<img class="profile-bgHome"
+						src="http://37.media.tumblr.com/88cbce9265c55a70a753beb0d6ecc2cd/tumblr_n8gxzn78qH1st5lhmo1_1280.jpg" />
+					<p:graphicImage id="users_image" value="#{usersImageBean.image}"
+						cache="false" styleClass="profilePic" width="50">
+						<f:param name="userName" value="#{userBean.userChoosen.username}" />
+					</p:graphicImage>
+
+				</div>
+				<h:form>
+					<h:commandButton class="blcUnblcApp"
+						rendered="#{ userBean.userChoosen.state == 'blocked' or userBean.userChoosen.state == 'waiting' }" value="Approve now "
+						action="#{userBean.ApproveUser()}" />
+					<h:commandButton class="blcUnblcApp"
+						rendered="#{ userBean.userChoosen.state != 'blocked' and userBean.userChoosen.state== 'activated'}"
+						value="Block " action="#{userBean.BlockUser()}" />
+					<h:commandButton class="blcUnblcApp"
+						rendered="#{userBean.userChoosen.state == 'blocked'}" value="unBlock "
+						action="#{userBean.unBlockUser()}" />
+				</h:form>
+				<div class="user-profile-data" onmouseover="doEdit()"
+					onmouseout="doHideEdit()">
+					<h1>#{userBean.userChoosen.firstname}
+						#{userBean.userChoosen.lastname}</h1>
+					<h:form id="editSpan" hidden="true">
+						<h:commandButton class="blcUnblcApp" value="Edit" action="#{userBean.doEdit}" />
+					</h:form><br/>
+					<p>Fanny/#{userBean.userChoosen.username}</p>
+				</div>
+				
+			</div>
+		</div>
+		<div id="posts" hidden="true">those are some posts</div>
+
+		
+
+		
+
+
+	</h:body>
+
+</ui:composition>

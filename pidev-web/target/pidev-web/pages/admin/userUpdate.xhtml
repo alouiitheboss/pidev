@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/pages/admin/Admin.xhtml">
+
+	<ui:define name="pageTitle">Update user's Profile </ui:define>
+
+	<ui:define name="pageContent">
+		<h:head>
+			<script src="#{request.contextPath}/resources/js/jquery-3.1.1.js"></script>
+		</h:head>
+		<h:body>
+			<h:form>
+				<h:panelGrid columns="3">
+
+					<h:outputText value="First Name" />
+					<h:inputText id="firstName"
+						value="#{userBean.userChoosen.firstName}" required="true"
+						requiredMessage="Please enter your firstName"
+						validator="#{registrationValidator.firstnameValidation}">
+						<f:ajax event="keyup" execute="@this" render="fNameThread" />
+					</h:inputText>
+					<h:message id="fNameThread" for="firstName" styleClass="error" />
+
+					<h:outputText value="Last Name" />
+
+					<h:inputText id="lastname" value="#{userBean.userChoosen.lastName}"
+						required="true" requiredMessage="Please enter your lastName"
+						validator="#{registrationValidator.lastnameValidation}">
+						<f:ajax event="keyup" execute="@this" render="lNameThread" />
+					</h:inputText>
+					<h:message id="lNameThread" for="lastname" styleClass="error" />
+
+					<h:outputText value="Email" />
+
+					<h:inputText id="mail" value="#{userBean.userChoosen.email}"
+						validator="#{registrationValidator.mailValidation}"
+						required="true" requiredMessage="Please enter your Email">
+						<f:ajax event="keyup" execute="@this" render="mailThread" />
+					</h:inputText>
+					<h:message id="mailThread" for="mail" styleClass="error" />
+
+					<h:outputText value="Password" />
+
+					<h:inputText id="pass" value="#{userBean.userChoosen.password}"
+						required="true" requiredMessage="Please enter a password" validator="#{registrationValidator.passwordUpValidator}>
+						<f:ajax event="keyup" execute="@this" render="passThread" />
+					</h:inputText>
+					<h:message id="passThread" for="pass" styleClass="error" />
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Gallery'}">
+						<h:outputText value="Address" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Gallery'}">
+						<h:inputText value="#{userBean.gallery.address}" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Gallery'}">
+						<h:outputText value="Surface" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Gallery'}">
+						<h:inputText value="#{userBean.gallery.surface}" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Gallery'}">
+						<h:outputText value="Decription" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Gallery'}">
+						<h:inputTextarea value="#{userBean.gallery.description}" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Artist'}">
+						<h:outputText value="BIO" />
+					</h:column>
+					<h:column
+						rendered="#{userBean.userChoosen['class'].simpleName eq 'Artist'}">
+						<h:inputTextarea value="#{userBean.artist.bio}" />
+					</h:column>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:column>
+						<h:commandButton action="#{userBean.doEditPerform()}"
+							value="Confirm Edit" />
+					</h:column>
+					<h:column>
+						<h:commandButton action="#{userBean.BackFromEdit()}" value="Back" />
+					</h:column>
+				</h:panelGrid>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

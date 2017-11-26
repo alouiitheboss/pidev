@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>GED</title>
+		<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" />
+		<link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css" />
+	</h:head>
+	<h:body>
+		<div class="All">
+			<div class="container">
+				<div class="content">
+					<div class="sign-up">
+						<h2>Don't Have an account ?</h2>
+						
+						<button class="signup">Sign Up</button>
+					</div>
+					<div class="sign-in">
+						<h2>Have an account ?</h2>
+						<p>The Right path is start from here ...</p>
+						<button class="signin">Log In</button>
+					</div>
+				</div>
+				<div class="signover">
+					<div class="first">
+						<h2>SIGN UP</h2>
+						<h:form enctype="multipart/form-data">
+							<h:panelGrid columns="2">
+								<h:inputText id="firstName" a:placeholder="First Name"
+									value="#{AuthentificationBean.newUser.firstname}" required="true"
+									requiredMessage="Please enter your firstName"
+									validator="#{registrationValidator.firstnameValidation}">
+									<f:ajax event="keyup" execute="@this" render="fNameThread" />
+								</h:inputText>
+								<h:message id="fNameThread" for="firstName" styleClass="error" />
+
+								<h:inputText id="lastname" a:placeholder="Last Name"
+									value="#{AuthentificationBean.newUser.lastname}" required="true"
+									requiredMessage="Please enter your lastName"
+									validator="#{registrationValidator.lastnameValidation}">
+									<f:ajax event="keyup" execute="@this" render="lNameThread" />
+								</h:inputText>
+								<h:message id="lNameThread" for="lastname" styleClass="error" />
+								
+								<p:outputLabel for="console1" value="Role :" />
+								<p:selectOneMenu id="console1" value="#{AuthentificationBean.newUser.role}"
+									style="width:125px" required="true" requiredMessage="country is required">
+									<f:selectItem itemLabel="Admin" itemValue="Admin" />
+									<f:selectItem itemLabel="BO" itemValue="BO" />
+									<f:selectItem itemLabel="RH" itemValue="RH" />
+									<f:selectItem itemLabel="SI" itemValue="SI" />
+									
+								</p:selectOneMenu>
+							
+								<h:inputText id="mail" a:placeholder="E-mail"
+									value="#{AuthentificationBean.newUser.email}"
+									validator="#{registrationValidator.mailValidation}"
+									required="true" requiredMessage="Please enter your Email">
+									<f:ajax event="keyup" execute="@this" render="mailThread" />
+								</h:inputText>
+								<h:message id="mailThread" for="mail" styleClass="error" />
+								<h:inputText id="username" a:placeholder="Username"
+									validator="#{registrationValidator.usernameValidation}"
+									value="#{AuthentificationBean.newUser.username}" required="true"
+									requiredMessage="Please enter your username">
+									<f:ajax event="keyup" execute="@this" render="usernameThread" />
+								</h:inputText>
+								<h:message id="usernameThread" for="username" styleClass="error" />
+								<h:inputSecret id="Password" a:placeholder="Password"
+									value="#{AuthentificationBean.newUser.password}"
+									validator="#{registrationValidator.passwordValidation}">
+									<f:attribute name="confirm"
+										value="#{confirmPassword.submittedValue}" />
+									<f:ajax event="blur" execute="password confirm"
+										render="m_password" />
+								</h:inputSecret>
+								<h:message id="m_password" for="Password" styleClass="error" />
+								<h:inputSecret binding="#{confirmPassword}" id="rePassword"
+									a:placeholder="retype Password">
+									<f:ajax event="blur" execute="password confirm"
+										render="passwodThread" />
+								</h:inputSecret>
+								<h:message id="passwodThread" for="rePassword"
+									styleClass="error" />
+							</h:panelGrid>
+							<h:commandButton id="signUp" action="#{AuthentificationBean.doAddUser()}"
+								value="SIGN UP" />
+							<h:outputText value="Picture" style="color: white;" />
+					<h:inputFile id="file-id" value="#{AuthentificationBean.picture}"
+						required="true" requiredMessage="Please upload a picture "
+						alt="upload file"></h:inputFile>
+						
+							
+						</h:form>
+					</div>
+					<div class="second" style="display: none">
+						<h2>LOG IN</h2>
+						<h:form>
+							<h:inputText id="username" a:placeholder="Username"
+								value="#{AuthentificationBean.user.username}" />
+							<h:inputSecret id="password" a:placeholder="Password"
+								value="#{AuthentificationBean.user.password}" />
+							<h:commandLink action="#{AuthentificationBean.doForgetPW()}" value="Forget Password ?" />
+							<h:commandButton id="login" action="#{AuthentificationBean.doLogin()}"
+								value="LOG IN" />
+						</h:form>
+						<p:dialog header="Effects"
+							widgetVar="dlg3" showEffect="explode" hideEffect="bounce"
+							height="100">
+							<h:outputText value="This dialog has nice effects." />
+						</p:dialog>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="#{request.contextPath}/resources/js/jquery-3.1.1.js"></script>
+		<script src="#{request.contextPath}/resources/js/plugins.js"></script>
+	</h:body>
+</ui:composition>

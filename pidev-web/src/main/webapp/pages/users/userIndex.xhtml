@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core" template="/template/User.xhtml">
+
+	<ui:define name="pageContent">
+		<link rel="stylesheet"
+			href="#{request.contextPath}/resources/css/user.css" />
+		<h:form>
+			<h:panelGrid columns="2" styleClass="panelGridCenter">
+				<h:column>
+					<h:inputText value="#{userBean.typedQuery}"
+						a:placeholder="Search in Fanny" />
+				</h:column>
+				<h:column>
+					<h:commandButton action="#{userBean.search()}" value="Search" />
+				</h:column>
+			</h:panelGrid>
+		</h:form>
+		<h:panelGroup rendered="#{userBean.searched}">
+			<ui:repeat var="item" value="#{userBean.lru}">
+				<header> <figure class="profile-banner"> <img
+					src="https://unsplash.it/975/300" alt="Profile banner" /> </figure> <h:form>
+					<h:commandLink action="#{userBean.doUserProfile(item)}">
+						<figure class="profile-picture"> <p:graphicImage
+							id="users_image" value="#{usersImageBean.image}" cache="false"
+							width="140" height="140">
+							<f:param name="userName" value="#{item.username}" />
+						</p:graphicImage> </figure>
+					</h:commandLink>
+				</h:form>
+				<div class="profile-stats">
+					<ul>
+						<li>NumberOfArtWorks<span>Artworks</span></li>
+						<li>#{userBean.getAllFollow(item)} <span>Followers</span></li>
+						<li>#{userBean.getAllFollowed(item).size()} <span>Following</span></li>
+					</ul>
+					<h:form>
+						<h:commandButton rendered="#{not userBean.isFriend(item)}"
+							action="#{userBean.Follow(item)}"
+							value="Follow #{item.firstName} " styleClass="follow" />
+						<h:commandButton rendered="#{userBean.isFriend(item)}"
+							action="#{userBean.unFollow(item)}"
+							value="unFollow #{item.firstName} " styleClass="follow" />
+					</h:form>
+				</div>
+				<h1>
+					#{item.firstName} #{item.lastName} <small>#{item.username}
+					</small>
+				</h1>
+				</header>
+				<br />
+				<hr></hr>
+			</ui:repeat>
+		</h:panelGroup>
+	</ui:define>
+
+</ui:composition>

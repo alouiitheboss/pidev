@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" >
+
+		<h:head>
+			<link rel="shortcut icon" type="image/x-icon"
+				href="#{request.contextPath}/resources/img/fanny.ico" />
+			<script src="#{request.contextPath}/resources/js/jquery-3.1.1.js"></script>
+			<script src="#{request.contextPath}/resources/js/admin.js"></script>
+		</h:head>
+		<h:body>
+			<h3>Manage Users</h3>
+			<h:form rendered="#{not empty userBean}">
+				<p:dataTable id="users" value="#{userBean.lu}" var="item"
+					widgetVar="usersTable" selection="#{userBean.userChoosen}"
+					selectionMode="single" rowKey="#{item.username}"
+					rowStyleClass="#{item.state == 'blocked' ? 'old' : null}" rows="10"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+					<f:facet name="header">
+					</f:facet>
+					<p:column width="60">
+						<f:facet name="header">
+						</f:facet>
+						<p:graphicImage id="users_image" value="#{usersImageBean.image}"
+							cache="false" styleClass="editor-picture" width="50">
+							<f:param name="userName" value="#{item.username}" />
+						</p:graphicImage>
+					</p:column>
+					<p:column width="150" filterBy="#{item.firstname}">
+						<f:facet name="header">First Name</f:facet>#{item.firstname}</p:column>
+					<p:column width="150" filterBy="#{item.lastname}">
+						<f:facet name="header">Last Name</f:facet>#{item.lastname}</p:column>
+					<p:column filterBy="#{item.email}">
+						<f:facet name="header">email</f:facet>#{item.email}</p:column>
+					<p:column width="150" filterBy="#{item.username}">
+						<f:facet name="header">username</f:facet>#{item.username}</p:column>
+					<p:column filterBy="#{item.state}" filterMatchMode="equals"
+						headerText="Status">
+						<f:facet name="filter">
+							<p:selectOneButton onchange="PF('usersTable').filter()">
+								<f:converter converterId="javax.faces.Boolean" />
+								<f:selectItem itemLabel="All" itemValue="" />
+								<f:selectItem itemLabel="Active" itemValue='activated' />
+								<f:selectItem itemLabel="Not Active" itemValue='blocked' />
+							</p:selectOneButton>
+						</f:facet>
+
+						<h:outputText rendered="#{  item.state == 'activated'}"
+							value="Activated" />
+						<h:outputText rendered="#{item.state == 'blocked'}" value="Blocked" />
+					</p:column>
+				</p:dataTable>
+				<p:contextMenu for="users">
+					<p:menuitem value="View" actionListener="#{userBean.Open()}"
+						icon="ui-icon-search" />
+				</p:contextMenu>
+			</h:form>
+
+			<h:panelGroup rendered="#{empty userBean.lu}">
+				<p>No users! Please add some users.</p>
+			</h:panelGroup>
+<br/>
+
+		</h:body>
+	
+</ui:composition>

@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	 template="/template/layout.xhtml">
+
+	<ui:define name="main">
+	Ajouter Event
+	<h:form>
+	<h:panelGrid columns="2">
+		
+
+		
+
+		<p:outputLabel value="nom" />
+		<p:inputText value="#{serviceBean.nom}" />
+	<p:outputLabel value="Duree" />
+		<p:inputText value="#{serviceBean.duree}" />
+		<p:outputLabel value="Lieu" />
+		<p:inputText value="#{serviceBean.lieu}" />
+		<p:outputLabel value="Description" />
+		<p:inputText value="#{serviceBean.description}" />
+		<p:outputLabel value="Type" />
+		<p:inputText value="#{serviceBean.type}" />
+		 <p:outputLabel value="Date_Debut" />
+		 
+		<p:inputText type="Date" value="#{serviceBean.date_Debut}" />
+        
+         
+        <p:outputLabel value="Prix" />
+		<p:inputText value="#{serviceBean.prix}" />
+ <p:commandButton action="#{serviceBean.CreateUser}"
+			value="Ajouter" />
+	
+</h:panelGrid>
+	</h:form>
+	</ui:define>
+</ui:composition>
+	

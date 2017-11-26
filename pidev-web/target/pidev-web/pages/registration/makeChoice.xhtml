@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<link rel="stylesheet" type="text/css"
+			href="#{request.contextPath}/resources/css/reg.css" />
+	</h:head>
+	<h:body>
+		<div id="A">
+			<header>
+				<div class="wrapper">
+					<h1>Almost there... You are ?</h1>
+				</div>
+			</header>
+			<section class="selections">
+				<button class="choice" id="rock">
+					<i class="fa fa-hand-rock-o"></i>
+					<p>
+					<h3>Artist</h3>
+					</p>
+				</button>
+				<button class="choice" id="scissors">
+					<i class="fa fa-hand-scissors-o"></i>
+					<p>
+					<h3>Gallery</h3>
+					</p>
+				</button>
+				<h2>Make your choice.</h2>
+				<div hidden="false" id="lS" style="color: white;">
+					<br /> <a onclick="lastStep()">Last Step</a>
+				</div>
+			</section>
+		</div>
+		<div id="Gal" hidden="true">
+			<h:form enctype="multipart/form-data">
+				<h:panelGrid columns="2">
+					<h:outputText value="Address" style="color: white;" />
+					<h:inputText value="#{AuthentificationBean.newGallery.address}" />
+					<h:outputText value="Surface" style="color: white;" />
+					<h:inputText value="#{AuthentificationBean.newGallery.surface}" />
+					<h:outputText value="Description" style="color: white;" />
+					<h:inputTextarea value="#{AuthentificationBean.newGallery.description}" />
+					<h:outputText value="Picture" style="color: white;" />
+					<h:inputFile id="file-id" value="#{AuthentificationBean.picture}"
+						required="true" requiredMessage="Please upload a picture "
+						alt="upload file"></h:inputFile>
+					<h:commandButton value="Done" action="#{AuthentificationBean.doAddGal()}" />
+				</h:panelGrid>
+			</h:form>
+
+		</div>
+
+		<div id="Art" hidden="true">
+			<h:form enctype="multipart/form-data">
+				<h:panelGrid columns="2">
+					<h:outputText value="Bio" style="color: white;" />
+					<h:inputTextarea value="#{AuthentificationBean.newArtist.bio}" />
+					<h:outputText value="Picture" style="color: white;" />
+					<h:inputFile id="file-id" value="#{AuthentificationBean.picture}"
+						required="true" requiredMessage="Please upload a picture "
+						alt="upload file"></h:inputFile>
+					<h:commandButton value="Done" action="#{AuthentificationBean.doAddArt()}" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+		<script type="text/javascript"
+			src="#{request.contextPath}/resources/js/jquery-3.1.1.js">
+					</script>
+		<script type="text/javascript"
+			src="#{request.contextPath}/resources/js/reg.js"></script>
+
+	</h:body>
+</ui:composition>

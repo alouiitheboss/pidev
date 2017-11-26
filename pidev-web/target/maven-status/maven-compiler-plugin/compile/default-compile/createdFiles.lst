@@ -1,0 +1,6 @@
+mbeans\users\HelperBean.class
+mbeans\users\UsersImageBean.class
+mbeans\users\UserBean.class
+mbeans\users\AuthentificationRegistrationBean.class
+mbeans\users\validators\RegistrationValidator.class
+mbeans\users\AuthentificationRegistrationBean$1.class

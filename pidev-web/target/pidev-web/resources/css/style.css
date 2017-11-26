@@ -1,0 +1,169 @@
+*
+{
+    
+    box-sizing: border-box;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+body {
+    background: url("https://static.pexels.com/photos/450035/pexels-photo-450035.jpeg") no-repeat fixed;
+    top: 0;
+    left: 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+}
+.All 
+{
+   overflow: hidden;
+    position: relative
+    
+}
+
+
+.All
+{
+   background-color: rgba(63, 63, 63, .7); 
+    height:900px
+}
+.All .content div
+{
+    
+    float:left;
+    width:50%
+    
+    
+}
+
+
+
+
+.All .content .sign-up
+{
+    padding: 0px 30px;
+    
+}
+.All .content .sign-up h2 {
+    color: #e67e22;
+    
+    font-size: 30px;
+    border-bottom: 3px solid #FFF;
+    display: inline-block;
+    padding: 6px 3px
+}
+
+.All .content .sign-up p
+{
+    color:#FFF;
+    font-size: 20px
+    
+}
+
+.All .content .sign-up button
+{
+    background: none;
+    border:none ;
+    padding :20px;
+    background-color: #e67e22;
+    width:200px;
+    font-size: 20px;
+    color:#FFF
+    
+}
+
+.All .content .sign-in
+{
+    padding: 0px 30px;
+    
+}
+.All .content .sign-in h2 
+{
+     color: #e67e22;
+    font-family: monospace;
+    font-size: 30px;
+    border-bottom: 3px solid #FFF;
+    display: inline-block;
+    padding: 6px 3px
+    
+}
+
+.All .content .sign-in p 
+{ color:#FFF;
+    font-size: 20px
+    
+}
+
+.All .content .sign-in button
+{
+    background: none;
+    border:none ;
+    padding :20px;
+    background-color: #e67e22;
+    width:200px;
+    font-size: 20px;
+    color:#FFF
+    
+}
+
+.All .signover
+{
+    position: absolute;
+  
+    background-color: #FFF;
+    padding: 50px;
+    height: 794px;
+    width: 595px;
+    
+}
+
+.All .signover input
+{
+    display: block;
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 250px;
+    background: none;
+    border: none;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    outline: none;
+    
+    
+}
+.All .signover .first h2
+{
+    text-align: center;
+    margin-bottom: 25px
+    
+}
+
+.second h2 #login #password #username #signUp
+{
+    text-align: center;
+    margin-bottom: 100px;
+    width: 500px;
+    
+}
+
+
+.All .signover .second a
+{
+text-decoration: none ;
+}
+.All .signover input[type="submit"]
+{
+background-color: #27ae60;
+    margin-top: 20px
+   
+ 
+}
+
+
+
+

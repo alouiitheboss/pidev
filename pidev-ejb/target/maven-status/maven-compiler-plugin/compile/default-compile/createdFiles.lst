@@ -1,0 +1,7 @@
+persistence\Role.class
+persistence\PlainPassword.class
+persistence\User.class
+persistence\State.class
+service\UserManagment.class
+service\UserManagmentRemote.class
+service\UserManagment$1.class

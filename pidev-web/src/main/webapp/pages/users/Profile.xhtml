@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core" template="/template/User.xhtml">
+
+<h:head></h:head>
+
+	<ui:define name="pageContent">
+
+		<link
+			href="#{request.contextPath}/resources/css/userProfile/bootstrap.min.css"
+			rel="stylesheet" />
+
+		
+		<link
+			href="#{request.contextPath}/resources/css/userProfile/animate.min.css"
+			rel="stylesheet" />
+
+	
+		<link
+			href="#{request.contextPath}/resources/css/userProfile/light-bootstrap-dashboard.css"
+			rel="stylesheet" />
+
+
+		
+		<link href="#{request.contextPath}/resources/css/userProfile/demo.css"
+			rel="stylesheet" />
+
+
+		
+		<link
+			href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+			rel="stylesheet" />
+
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
+			rel='stylesheet' type='text/css' />
+		<link
+			href="#{request.contextPath}/resources/css/userProfile/pe-icon-7-stroke.css"
+			rel="stylesheet" />
+
+		<div class="main-panel">
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Edit Profile</h4>
+								</div>
+								<div class="content">
+									<form>
+										<div class="row">
+											<div class="col-md-5"></div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label>Username</label>
+													<h:inputText styleClass="form-control" disabled="true"
+														a:placeholder="Username"
+														value="#{userBean.userProfile.username}" />
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="exampleInputEmail1">Email address</label>
+													<h:inputText styleClass="form-control"
+														disabled="#{userBean.visitor}" a:placeholder="Email"
+														value="#{userBean.userProfile.email}" />
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>First Name</label>
+													<h:inputText disabled="#{userBean.visitor}"
+														styleClass="form-control" a:placeholder="Company"
+														value="#{userBean.userProfile.firstname}" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Last Name</label>
+													<h:inputText styleClass="form-control"
+														disabled="#{userBean.visitor}" a:placeholder="Last Name"
+														value="#{userBean.userProfile.lastname}" />
+												</div>
+											</div>
+										</div>
+
+										
+										<h:form>
+											<h:commandButton
+												styleClass="btn btn-info btn-fill pull-right"
+												value="Update Profile" action="#{userBean.editUser()}"
+												rendered="#{not userBean.visitor}" />
+											
+											
+										</h:form>
+										<div class="clearfix"></div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card card-user">
+								<div class="image"></div>
+								<div class="content">
+									<div class="author">
+										<h:form id ="picture">
+											<h:commandLink onclick="PF('uploadFileDlgW').show()">
+												<p:graphicImage styleClass="avatar border-gray"
+													id="users_image" value="#{usersImageBean.image}"
+													cache="false">
+													<f:param name="userName"
+														value="#{userBean.userProfile.username}" />
+												</p:graphicImage>
+											</h:commandLink>
+											<p:dialog id="uploadFileDlg" header="upload a picture"
+												widgetVar="uploadFileDlgW" position="top" modal="true"
+												resizable="false" styleClass="upload-dialog">
+												<h:form enctype="multipart/form-data">
+													<p:fileUpload
+														fileUploadListener="#{userBean.handleFileUpload}"
+														mode="advanced" sizeLimit="100000"
+														update=":picture:users_image"
+														onsuccess="PF('uploadFileDlgW').hide()"
+														allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+												</h:form>
+												<p:commandButton value="Done"
+													oncomplete="PF('uploadFileDlgW').hide()" styleClass="right" />
+											</p:dialog>
+										</h:form>
+										<h4 class="title">
+											#{userBean.userProfile.firstname}
+											#{userBean.userProfile.lastname}<br /> <small>#{userBean.userProfile.username}</small>
+										</h4>
+									</div>
+								</div>
+								<hr />
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</ui:define>
+</ui:composition>

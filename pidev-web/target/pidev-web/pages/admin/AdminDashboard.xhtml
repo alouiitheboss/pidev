@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/pages/admin/Admin.xhtml"
+		xmlns:p="http://primefaces.org/ui">
+	      	
+			<h:head></h:head>
+			<ui:define name="pageTitle"></ui:define>
+<ui:define name="pageContent">
+	<p:panelGrid columns="1" layout="grid">            
+ 		 <p:chart type="line" model="#{statisticBean.areaModel}" style="height:300px" />
+  	</p:panelGrid>
+  	
+   	<p:panelGrid columns="2" layout="grid">            
+		<p:chart type="pie" model="#{statisticBean.pieModel1}" style="width:400px;height:300px" />
+		<p:chart type="bar" model="#{statisticBean.barModel}" style="height:300px"/>
+	</p:panelGrid>
+						
+			</ui:define>
+			
+			
+			
+			
+			
+
+</ui:composition>
