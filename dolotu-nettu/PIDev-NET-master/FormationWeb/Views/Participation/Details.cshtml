@@ -1,0 +1,41 @@
+﻿@model FormationWeb.Models.ParticipationModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ParticipationModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_participation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_participation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Formation.adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Formation.adresse)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,101 @@
+﻿@RenderSection("JavaScript", required: false)
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="@Url.Content("~/Content/")css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="@Url.Content("~/Content/")js/jquery-1.11.0.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="@Url.Content("~/Content/")css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta charset="utf-8" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,600italic,400italic,800,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="@Url.Content("~/Content/")js/menu_jquery.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <!--banner start here-->
+    <div class="banner-two">
+        <div class="header">
+            <div class="container">
+                <div class="header-main">
+                    <div class="logo">
+                     
+                    </div>
+                    <div class="header-right">
+                        
+                        </div>
+
+                        <div class="top-nav">
+                            <span class="menu"> <img src="@Url.Content("~/Content/")images/travel-scams.jpg" alt="" /></span>
+                            <table class="table">
+                                <tr>
+                                <th><a href="Formation/Index" class="active hvr-sweep-to-bottom">Home</a></th>
+                                <th><a class="hvr-sweep-to-bottom" href="/Participation/IndexParticipation">Mes Participation</a></th>
+                                <th><a class="hvr-sweep-to-bottom" href="/Participation/Search">voir les prochaine Formation</a></th>
+                                <th><a class="hvr-sweep-to-bottom" href="/Formation/Index">Formation</a></th>
+                                <th><a class="hvr-sweep-to-bottom" href="">Gestions des crourriers</a></th></tr>
+                                </table>
+                                    <div class="clearfix"> </div>
+                                    <!-- script-for-menu -->
+                                    <script>
+                                    $("span.menu").click(function () {
+                                        $("ul.res").slideToggle(300, function () {
+                                            // Animation complete.
+                                        });
+                                    });
+                                    </script>
+                                    <!-- /script-for-menu -->
+</div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--banner start here-->
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    @section scripts {
+        <script type="text/javascript">
+  $(function () {
+    $('#AnnualMeetingDate').datetimepicker({
+      defaultDate: '@Model.AnnualMeetingDate',
+      format: 'L',
+      showClose: true,
+      showClear: true,
+      toolbarPlacement: 'top'
+    });
+    $('#AnnualMeetingStartTime').datetimepicker({
+      defaultDate: '@Model.AnnualMeetingStartTime',
+      format: 'LT',
+      showClose: true,
+      showClear: true,
+      toolbarPlacement: 'top',
+      stepping: 15
+    });
+  });
+        </script>
+    }
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datetime")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
